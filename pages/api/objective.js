@@ -3,7 +3,6 @@ import Objective from '../../models/Objective'
 
 export default async function handler (req, res) {
   const { method } = req
-
   await connect()
 
   switch (method) {

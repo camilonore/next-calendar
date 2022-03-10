@@ -1,25 +1,47 @@
 import styles from './Modal.module.css'
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
+import { postData } from '../../utils/postData'
 
 const Modal = () => {
   const { isModalOpen } = useContext(CalendarContext)
   const { isTask } = useContext(CalendarContext)
+
+  async function handleSubmit (e) {
+    e.preventDefault()
+    const body = {}
+    let url = ''
+
+    if (isTask) {
+      body.day = e.target.day.value
+      body.type = e.target.type.value
+      body.hour = e.target.hour.value
+      body.description = e.target.description.value
+      url = 'api/activity'
+    } else {
+      body.objective = e.target.objective.value
+      url = 'api/objective'
+    }
+    postData(url, body)
+  }
+
   return (
     <section className={styles.modal} style={{ display: isModalOpen ? 'flex' : 'none' }}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         {isTask
           ? <>
+          <label htmlFor='day'>Day</label>
+          <input id='day' type="text" name='day' placeholder='Monday'/>
           <label htmlFor='type'>Type</label>
-          <input id='type' type="text" placeholder='Gym'/>
+          <input id='type' type="text" name='type' placeholder='Gym'/>
           <label htmlFor='Hour'>Hour</label>
-          <input id='Hour' type="text" placeholder='9:00am'/>
+          <input id='Hour' type="text" name='hour' placeholder='9:00am'/>
           <label htmlFor='description'>Description</label>
           <input id='description' type="text" placeholder='Arms and Back'/>
         </>
           : <>
-          <label htmlFor='description'>Description</label>
-          <input id='description' type="text" placeholder='Read more'/>
+          <label htmlFor='description'>Objective</label>
+          <input id='description' type="text" name='objective' placeholder='Read more'/>
         </>
         }
         <button type='submit'>Submit</button>

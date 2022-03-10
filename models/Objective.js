@@ -3,11 +3,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const mySchema = new Schema({
-  icon: {
-    type: String,
-    required: true
-  },
-  text: {
+  objective: {
     type: String,
     required: true
   }

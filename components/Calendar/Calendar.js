@@ -1,4 +1,4 @@
-import styles from '../../styles/Calendar.module.css'
+import styles from './Calendar.module.css'
 import glassmorphism from '../../styles/Glassmorphism.module.css'
 import Card from '../Card/Card'
 

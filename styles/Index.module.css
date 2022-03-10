@@ -4,9 +4,8 @@
   backdrop-filter: blur( 20px );
   -webkit-backdrop-filter: blur( 20px );
   display: grid;
+  grid-template-rows: 7vh 86vh;
   grid-template-columns: 15% 1fr;
-  place-content: center;
   gap: 15px;
-  min-height: 100vh;
   padding: 15px;
 }

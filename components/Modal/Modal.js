@@ -1,8 +1,12 @@
 import styles from './Modal.module.css'
+import { useContext } from 'react'
+import { CalendarContext } from '../../Context/CalendarContext'
 
-const Modal = ({ isTask = false, isOpen = false }) => {
+const Modal = () => {
+  const { isModalOpen } = useContext(CalendarContext)
+  const { isTask } = useContext(CalendarContext)
   return (
-    <section className={styles.modal} style={{ display: isOpen ? 'flex' : 'none' }}>
+    <section className={styles.modal} style={{ display: isModalOpen ? 'flex' : 'none' }}>
       <form className={styles.form}>
         {isTask
           ? <>

@@ -40,20 +40,9 @@
   font-weight: 400;
   line-break: anywhere;
 }
-.button{
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
+.editButton{
   position: absolute;
   top: -8px;
   right: -8px;
-  border: 1px solid;
   z-index: 1;
-  background: rgba( 255, 255, 255, 0.45 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 20px );
-  border-radius: 100%;
-  border: 1px solid rgba( 255, 255, 255, 0.8 );
 }

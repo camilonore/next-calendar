@@ -1,12 +1,19 @@
 import styles from './Card.module.css'
-import Image from 'next/image'
+import { useContext } from 'react'
+import { CalendarContext } from '../../Context/CalendarContext'
+import { EditButton } from '../EditButton/EditButton'
 
 const Card = ({ type, hour, description }) => {
+  const { editMode, setIsTask, setIsModalOpen } = useContext(CalendarContext)
+  const handleEdit = () => {
+    setIsTask(true)
+    setIsModalOpen(prev => !prev)
+  }
   return (
     <div className={styles.card}>
-      <button className={styles.button}>
-        <Image src={'https://iconoir.com/source/icons/edit-pencil.svg'} width={30} height={30}/>
-      </button>
+      <div className={styles.editButton}>
+        {editMode ? <EditButton onClick={handleEdit}/> : ''}
+      </div>
       <section className={styles.type}>
         <p>{type}</p>
       </section>

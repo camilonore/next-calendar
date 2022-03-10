@@ -1,0 +1,31 @@
+.week{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  gap: 0 10px;
+}
+.week > p{
+  grid-row: 1;
+}
+.monday, 
+.tuesday, 
+.wednesday,
+.thursday, 
+.friday{
+  width: 80%;
+}
+.monday{
+  grid-column: 1;
+}
+.tuesday{
+  grid-column: 2;
+}
+.wednesday{
+  grid-column: 3;
+}
+.thursday{
+  grid-column: 4;
+}
+.friday{
+  grid-column: 5;
+}

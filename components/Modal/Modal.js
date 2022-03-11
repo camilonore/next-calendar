@@ -4,7 +4,7 @@ import { CalendarContext } from '../../Context/CalendarContext'
 import { postData } from '../../utils/postData'
 
 const Modal = () => {
-  const { setIsModalOpen, isModalOpen, isTask, setObjectives } = useContext(CalendarContext)
+  const { setIsModalOpen, isModalOpen, isTask, setObjectives, setActivities } = useContext(CalendarContext)
 
   async function handleSubmit (e) {
     e.preventDefault()
@@ -24,7 +24,8 @@ const Modal = () => {
     const response = await postData(url, body)
     if (response.success) {
       setIsModalOpen(false)
-      if (isTask) setObjectives(prev => [...prev, response.data])
+      if (!isTask) setObjectives(prev => [...prev, response.data])
+      setActivities(prev => [...prev, response.data])
     }
   }
 

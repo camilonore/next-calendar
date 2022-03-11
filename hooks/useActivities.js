@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { CalendarContext } from '../Context/CalendarContext'
 
 function useActivities () {
-  const [activities, setActivities] = useState(null)
+  const { activities, setActivities } = useContext(CalendarContext)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     setLoading(true)
@@ -12,7 +13,7 @@ function useActivities () {
         setLoading(false)
       })
   }, [])
-  return { activities, setActivities, loading }
+  return { activities, loading }
 }
 
 export { useActivities }

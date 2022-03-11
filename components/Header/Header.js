@@ -27,7 +27,7 @@ const Header = () => {
       {editMode
         ? <>
         <Image src={'https://iconoir.com/source/icons/cancel.svg'} width={20} height={20}/>
-        <p>Close edit mode</p>
+        <p>Close Edit Mode</p>
         </>
         : <>
         <Image src={'https://iconoir.com/source/icons/page-edit.svg'} width={20} height={20}/>

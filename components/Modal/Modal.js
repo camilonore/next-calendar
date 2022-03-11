@@ -2,22 +2,22 @@ import styles from './Modal.module.css'
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 import { Form } from '../Form/Form'
-import { taskFields, objectiveFields, newTaskFields } from '../../utils/formFields'
-import { useSubmit } from '../../hooks/useSubmit'
+import { taskFields, objectiveFields, editTaskFields, editObjectiveFields } from '../../utils/formFields'
+import { usePOST } from '../../hooks/usePOST'
 
 const Modal = () => {
   const {
     setIsModalOpen,
     isModalOpen,
     isTask,
-    isNewTask,
+    editMode,
     setObjectives,
     setActivities
   } = useContext(CalendarContext)
 
   function handleTaskSubmit (event) {
     event.preventDefault()
-    useSubmit({ event, fields: taskFields, isTask })
+    usePOST({ event, fields: taskFields, isTask })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)
@@ -29,7 +29,7 @@ const Modal = () => {
   }
   function handleObjectiveSubmit (event) {
     event.preventDefault()
-    useSubmit({ event, fields: objectiveFields, isTask })
+    usePOST({ event, fields: objectiveFields, isTask })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)
@@ -42,12 +42,10 @@ const Modal = () => {
 
   return (
     <section className={styles.modal} style={{ display: isModalOpen ? 'flex' : 'none' }}>
-      {isTask
-        ? isNewTask
-          ? <Form onSubmit={handleTaskSubmit} fields={taskFields}/>
-          : <Form onSubmit={handleTaskSubmit} fields={newTaskFields}/>
-        : <Form onSubmit={handleObjectiveSubmit} fields={objectiveFields}/>
-      }
+      {isTask && editMode && <Form onSubmit={handleTaskSubmit} fields={editTaskFields}/>}
+      {!isTask && editMode && <Form onSubmit={handleObjectiveSubmit} fields={editObjectiveFields}/>}
+      {isTask && !editMode && <Form onSubmit={handleTaskSubmit} fields={taskFields}/>}
+      {!isTask && !editMode && <Form onSubmit={handleObjectiveSubmit} fields={objectiveFields}/>}
     </section>
   )
 }

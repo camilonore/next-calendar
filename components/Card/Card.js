@@ -3,11 +3,12 @@ import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 import { EditButton } from '../EditButton/EditButton'
 
-const Card = ({ type, hour, description }) => {
-  const { editMode, setIsTask, setIsModalOpen } = useContext(CalendarContext)
+const Card = ({ objectId, type, hour, description }) => {
+  const { editMode, setIsTask, setIsModalOpen, setEditObjectId } = useContext(CalendarContext)
   const handleEdit = () => {
     setIsTask(true)
     setIsModalOpen(prev => !prev)
+    setEditObjectId(objectId)
   }
   return (
     <div className={styles.card}>

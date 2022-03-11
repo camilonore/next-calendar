@@ -26,8 +26,9 @@ export default async function handler (req, res) {
     case 'DELETE':
       try {
         const { id } = req.body
-        const activity = await Activity.deleteOne({ _id: id })
-        res.status(201).json({ success: true, data: activity })
+        await Activity.deleteOne({ _id: id })
+        const activities = await Activity.find({})
+        res.status(201).json({ success: true, data: activities })
       } catch (error) {
         res.status(400).json({ success: false })
       }

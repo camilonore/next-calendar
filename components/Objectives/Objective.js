@@ -3,11 +3,12 @@ import { EditButton } from '../EditButton/EditButton'
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 
-const Objective = ({ objective }) => {
-  const { editMode, setIsTask, setIsModalOpen } = useContext(CalendarContext)
+const Objective = ({ objective, objectId }) => {
+  const { editMode, setIsTask, setIsModalOpen, setEditObjectId } = useContext(CalendarContext)
   const handleEdit = () => {
     setIsTask(false)
     setIsModalOpen(prev => !prev)
+    setEditObjectId(objectId)
   }
   return (
     <div>

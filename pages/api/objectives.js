@@ -25,8 +25,9 @@ export default async function handler (req, res) {
     case 'DELETE':
       try {
         const { id } = req.body
-        const objective = await Objective.deleteOne({ _id: id })
-        res.status(201).json({ success: true, data: objective })
+        await Objective.deleteOne({ _id: id })
+        const objectives = await Objective.find({})
+        res.status(201).json({ success: true, data: objectives })
       } catch (error) {
         res.status(400).json({ success: false })
       }

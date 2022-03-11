@@ -20,7 +20,14 @@ const taskFields = [
     required: true
   }
 ]
-const newTaskFields = [
+const objectiveFields = [
+  {
+    name: 'objective',
+    placeholder: 'Read more',
+    required: true
+  }
+]
+const editTaskFields = [
   {
     name: 'day',
     placeholder: 'Monday'
@@ -35,15 +42,16 @@ const newTaskFields = [
   },
   {
     name: 'description',
-    placeholder: 'Arms and Back'
+    placeholder: 'Arms and Back',
+    deleteButton: true
   }
 ]
-const objectiveFields = [
+const editObjectiveFields = [
   {
     name: 'objective',
     placeholder: 'Read more',
-    required: true
+    deleteButton: true
   }
 ]
 
-export { taskFields, objectiveFields, newTaskFields }
+export { taskFields, objectiveFields, editTaskFields, editObjectiveFields }

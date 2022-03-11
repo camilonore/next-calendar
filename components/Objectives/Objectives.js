@@ -11,7 +11,7 @@ const Objectives = () => {
       {loading
         ? <p>Getting objectives..</p>
         : objectives.map(data => {
-          return <Objective key={data._id} objective={data.objective}/>
+          return <Objective key={data._id} objectId={data._id} objective={data.objective}/>
         })}
     </section>
   )

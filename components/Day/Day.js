@@ -13,7 +13,7 @@ const Day = ({ day }) => {
         loading
           ? <p>Loading...</p>
           : dailyTasks.map(task => {
-            return <Card key={task._id} type={task.type} hour={task.hour} description={task.description} />
+            return <Card key={task._id} objectId={task._id} type={task.type} hour={task.hour} description={task.description} />
           })
       }
     </div>

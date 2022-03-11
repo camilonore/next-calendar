@@ -1,6 +1,6 @@
 import { postData } from '../utils/postData'
 
-const useSubmit = async ({ event, fields, isTask }) => {
+const usePOST = async ({ event, fields, isTask }) => {
   const body = {}
   const url = isTask ? 'api/activities' : 'api/objectives'
   fields.forEach(field => {
@@ -14,4 +14,4 @@ const useSubmit = async ({ event, fields, isTask }) => {
   return response
 }
 
-export { useSubmit }
+export { usePOST }

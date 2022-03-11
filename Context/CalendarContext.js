@@ -5,8 +5,8 @@ const CalendarContext = createContext({})
 function CalendarProvider ({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isTask, setIsTask] = useState(false)
-  const [isNewTask, setIsNewTask] = useState(false)
   const [editMode, setEditMode] = useState(false)
+  const [editObjectId, setEditObjectId] = useState('')
   const [objectives, setObjectives] = useState([])
   const [activities, setActivities] = useState([])
   return (
@@ -15,14 +15,14 @@ function CalendarProvider ({ children }) {
     setIsModalOpen,
     isTask,
     setIsTask,
-    isNewTask,
-    setIsNewTask,
     editMode,
     setEditMode,
     objectives,
     setObjectives,
     activities,
-    setActivities
+    setActivities,
+    editObjectId,
+    setEditObjectId
   }}>
     {children}
   </CalendarContext.Provider>

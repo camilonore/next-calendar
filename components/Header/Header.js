@@ -20,22 +20,22 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <button className={styles.button} onClick={handleNewTask}>
-        <Image src={'https://iconoir.com/source/icons/add-circled-outline.svg'} width={20} height={20}/>
+        <Image src={'/add.svg'} width={20} height={20}/>
         <p>New Task</p>
       </button>
       <button className={styles.button} onClick={handleEdit}>
       {editMode
         ? <>
-        <Image src={'https://iconoir.com/source/icons/cancel.svg'} width={20} height={20}/>
+        <Image src={'/cancel.svg'} width={20} height={20}/>
         <p>Exit Edit Mode</p>
         </>
         : <>
-        <Image src={'https://iconoir.com/source/icons/page-edit.svg'} width={20} height={20}/>
+        <Image src={'/page-edit.svg'} width={20} height={20}/>
         <p>Edit Task/Objective</p>
         </>}
       </button>
       <button className={styles.button} onClick={handleObjective}>
-        <Image src={'https://iconoir.com/source/icons/medal.svg'} width={20} height={20}/>
+        <Image src={'/medal.svg'} width={20} height={20}/>
         <p>New Objective</p>
       </button>
     </header>

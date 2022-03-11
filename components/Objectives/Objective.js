@@ -11,7 +11,7 @@ const Objective = ({ objective }) => {
   }
   return (
     <div>
-      <Image width={15} height={15} src="https://iconoir.com/source/icons/archery.svg"/>
+      <Image width={15} height={15} src="/check.svg"/>
       <p>{objective}</p>
       {editMode ? <EditButton onClick={handleEdit}/> : ''}
       <style jsx>{`

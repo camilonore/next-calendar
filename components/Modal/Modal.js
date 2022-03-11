@@ -24,8 +24,16 @@ const Modal = () => {
     const response = await postData(url, body)
     if (response.success) {
       setIsModalOpen(false)
-      if (!isTask) setObjectives(prev => [...prev, response.data])
+      if (!isTask) {
+        setObjectives(prev => [...prev, response.data])
+        e.target.objective.value = ''
+        return
+      }
       setActivities(prev => [...prev, response.data])
+      e.target.day.value = ''
+      e.target.type.value = ''
+      e.target.hour.value = ''
+      e.target.description.value = ''
     }
   }
 
@@ -41,14 +49,14 @@ const Modal = () => {
           <label htmlFor='Hour'>Hour</label>
           <input id='Hour' type="text" name='hour' placeholder='9:00am'/>
           <label htmlFor='description'>Description</label>
-          <input id='description' type="text" placeholder='Arms and Back'/>
+          <input id='description' type="text" placeholder='Arms and Back' />
         </>
           : <>
           <label htmlFor='description'>Objective</label>
-          <input id='description' type="text" name='objective' placeholder='Read more'/>
+          <input id='description' type="text" name='objective' placeholder='Read more' required/>
         </>
         }
-        <button type='submit'>Submit</button>
+        <button type='submit' requ >Submit</button>
       </form>
     </section>
   )

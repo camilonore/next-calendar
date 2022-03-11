@@ -2,7 +2,7 @@ import styles from './Modal.module.css'
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 import { Form } from '../Form/Form'
-import { taskFields, objectiveFields } from '../../utils/formFields'
+import { taskFields, objectiveFields, newTaskFields } from '../../utils/formFields'
 import { useSubmit } from '../../hooks/useSubmit'
 
 const Modal = () => {
@@ -10,6 +10,7 @@ const Modal = () => {
     setIsModalOpen,
     isModalOpen,
     isTask,
+    isNewTask,
     setObjectives,
     setActivities
   } = useContext(CalendarContext)
@@ -42,7 +43,9 @@ const Modal = () => {
   return (
     <section className={styles.modal} style={{ display: isModalOpen ? 'flex' : 'none' }}>
       {isTask
-        ? <Form onSubmit={handleTaskSubmit} fields={taskFields}/>
+        ? isNewTask
+          ? <Form onSubmit={handleTaskSubmit} fields={taskFields}/>
+          : <Form onSubmit={handleTaskSubmit} fields={newTaskFields}/>
         : <Form onSubmit={handleObjectiveSubmit} fields={objectiveFields}/>
       }
     </section>

@@ -2,7 +2,7 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   position: absolute;
   right: 0;
@@ -14,4 +14,9 @@
   backdrop-filter: blur( 20px );
   -webkit-backdrop-filter: blur( 15px );
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.modal > p{
+  font-size: 18px;
+  font-weight: 700;
+  color: #ef4444;
 }

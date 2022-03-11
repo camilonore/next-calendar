@@ -4,13 +4,15 @@ import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 
 const Header = () => {
-  const { setIsModalOpen, setEditMode, setIsTask, editMode } = useContext(CalendarContext)
+  const { setIsModalOpen, setEditMode, setIsTask, editMode, setIsNewTask } = useContext(CalendarContext)
   const handleEdit = () => {
     setEditMode(prev => !prev)
+    setIsNewTask(false)
   }
   const handleNewTask = () => {
     setIsModalOpen(prev => !prev)
     setIsTask(true)
+    setIsNewTask(true)
   }
   const handleObjective = () => {
     setIsTask(false)

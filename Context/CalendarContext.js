@@ -6,6 +6,7 @@ function CalendarProvider ({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isTask, setIsTask] = useState(false)
   const [editMode, setEditMode] = useState(false)
+  const [objectives, setObjectives] = useState([])
   return (
   <CalendarContext.Provider value={{
     isModalOpen,
@@ -13,7 +14,9 @@ function CalendarProvider ({ children }) {
     isTask,
     setIsTask,
     editMode,
-    setEditMode
+    setEditMode,
+    objectives,
+    setObjectives
   }}>
     {children}
   </CalendarContext.Provider>

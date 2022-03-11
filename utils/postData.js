@@ -1,11 +1,11 @@
-async function postData (url, body) {
-  const response = await fetch(url, {
+function postData (url, body) {
+  return fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
-  })
-  return response
+  }).then((res) => res.json())
+    .then((data) => data)
 }
 export { postData }

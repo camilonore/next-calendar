@@ -3,7 +3,7 @@ import { EditButton } from '../EditButton/EditButton'
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 
-const Objective = ({ icon, text }) => {
+const Objective = ({ objective }) => {
   const { editMode, setIsTask, setIsModalOpen } = useContext(CalendarContext)
   const handleEdit = () => {
     setIsTask(false)
@@ -12,7 +12,7 @@ const Objective = ({ icon, text }) => {
   return (
     <div>
       <Image width={15} height={15} src="https://iconoir.com/source/icons/archery.svg"/>
-      <p>{text}</p>
+      <p>{objective}</p>
       {editMode ? <EditButton onClick={handleEdit}/> : ''}
       <style jsx>{`
         img {

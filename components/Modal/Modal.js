@@ -33,7 +33,7 @@ const Modal = () => {
   }
   function handleAcitvityUpdate (event) {
     event.preventDefault()
-    usePATCH({ event, fields: taskFields, isTask, editObjectId })
+    usePATCH({ event, fields: editTaskFields, isTask, editObjectId })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)
@@ -43,7 +43,7 @@ const Modal = () => {
   }
   function handleObjectiveUpdate (event) {
     event.preventDefault()
-    usePATCH({ event, fields: objectiveFields, isTask, editObjectId })
+    usePATCH({ event, fields: editObjectiveFields, isTask, editObjectId })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)

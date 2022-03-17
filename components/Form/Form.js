@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 import styles from './Form.module.css'
-import { deleteData } from '../../utils/deleteData'
+import { deleteData } from '../../utils/reqMethods'
 
 const Form = ({ onSubmit, fields = {} }) => {
   const { editObjectId, setIsModalOpen, setObjectives, setActivities, isTask } = useContext(CalendarContext)

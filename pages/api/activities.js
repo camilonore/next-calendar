@@ -1,5 +1,6 @@
 import { connect } from '../../db'
 import Activity from '../../models/Activity'
+import { responseSuccess, responseError } from '../../utils/response'
 
 export default async function handler (req, res) {
   const { method } = req
@@ -10,17 +11,17 @@ export default async function handler (req, res) {
     case 'GET':
       try {
         const activities = await Activity.find({})
-        res.status(200).json({ success: true, data: activities })
+        responseSuccess(res, activities, 200)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     case 'POST':
       try {
         const activity = await Activity.create(req.body)
-        res.status(201).json({ success: true, data: activity })
+        responseSuccess(res, activity, 201)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     case 'DELETE':
@@ -28,9 +29,9 @@ export default async function handler (req, res) {
         const { id } = req.body
         await Activity.deleteOne({ _id: id })
         const activities = await Activity.find({})
-        res.status(201).json({ success: true, data: activities })
+        responseSuccess(res, activities, 201)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     case 'PATCH':
@@ -45,13 +46,13 @@ export default async function handler (req, res) {
         await foundActivity.save()
 
         const activities = await Activity.find({})
-        res.status(201).json({ success: true, data: activities })
+        responseSuccess(res, activities, 201)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     default:
-      res.status(400).json({ success: false })
+      responseError(res, 400, 'Unexpected error')
       break
   }
 }

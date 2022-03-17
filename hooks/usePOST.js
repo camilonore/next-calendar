@@ -1,4 +1,4 @@
-import { postData } from '../utils/postData'
+import { postData } from '../utils/reqMethods'
 
 const usePOST = async ({ event, fields, isTask }) => {
   const body = {}

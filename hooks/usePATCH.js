@@ -1,4 +1,4 @@
-import { patchData } from '../utils/postData'
+import { patchData } from '../utils/reqMethods'
 
 const usePATCH = async ({ event, fields, isTask, editObjectId }) => {
   const body = {

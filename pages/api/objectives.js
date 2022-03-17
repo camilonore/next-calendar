@@ -1,5 +1,6 @@
 import { connect } from '../../db'
 import Objective from '../../models/Objective'
+import { responseSuccess, responseError } from '../../utils/response'
 
 export default async function handler (req, res) {
   const { method } = req
@@ -9,17 +10,17 @@ export default async function handler (req, res) {
     case 'GET':
       try {
         const objectives = await Objective.find({})
-        res.status(200).json({ success: true, data: objectives })
+        responseSuccess(res, objectives, 200)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     case 'POST':
       try {
         const objective = await Objective.create(req.body)
-        res.status(201).json({ success: true, data: objective })
+        responseSuccess(res, objective, 201)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     case 'DELETE':
@@ -27,28 +28,27 @@ export default async function handler (req, res) {
         const { id } = req.body
         await Objective.deleteOne({ _id: id })
         const objectives = await Objective.find({})
-        res.status(201).json({ success: true, data: objectives })
+        responseSuccess(res, objectives, 200)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     case 'PATCH':
       try {
-        console.log(req.body)
         const { id } = req.body
         const { objective } = req.body
         const foundObjective = await Objective.findById(id)
 
         foundObjective.objective = objective
         await foundObjective.save()
-        const activities = await Objective.find({})
-        res.status(201).json({ success: true, data: activities })
+        const objectives = await Objective.find({})
+        responseSuccess(res, objectives, 200)
       } catch (error) {
-        res.status(400).json({ success: false })
+        responseError(res, 400, error)
       }
       break
     default:
-      res.status(400).json({ success: false })
+      responseError(res, 400, 'Unexpected error')
       break
   }
 }

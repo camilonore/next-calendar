@@ -4,9 +4,9 @@ import { CalendarContext } from '../../Context/CalendarContext'
 import { EditButton } from '../EditButton/EditButton'
 
 const Card = ({ objectId, type, hour, description }) => {
-  const { editMode, setIsTask, setIsModalOpen, setEditObjectId } = useContext(CalendarContext)
+  const { editMode, setIsActivity, setIsModalOpen, setEditObjectId } = useContext(CalendarContext)
   const handleEdit = () => {
-    setIsTask(true)
+    setIsActivity(true)
     setIsModalOpen(prev => !prev)
     setEditObjectId(objectId)
   }

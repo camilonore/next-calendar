@@ -4,24 +4,24 @@ import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 
 const Header = () => {
-  const { setIsModalOpen, editMode, setEditMode, setIsTask } = useContext(CalendarContext)
+  const { setIsModalOpen, editMode, setEditMode, setIsActivity } = useContext(CalendarContext)
   const handleEdit = () => {
     setEditMode(prev => !prev)
   }
-  const handleNewTask = () => {
-    setIsTask(true)
+  const handleNewActivity = () => {
+    setIsActivity(true)
     setIsModalOpen(prev => !prev)
   }
   const handleObjective = () => {
-    setIsTask(false)
+    setIsActivity(false)
     setIsModalOpen(prev => !prev)
   }
 
   return (
     <header className={styles.header}>
-      <button disabled ={editMode && true} className={styles.button} onClick={handleNewTask}>
+      <button disabled ={editMode && true} className={styles.button} onClick={handleNewActivity}>
         <Image src={'/add.svg'} width={20} height={20}/>
-        <p>New Task</p>
+        <p>New Activity</p>
       </button>
       <button disabled ={editMode && true} className={styles.button} onClick={handleObjective}>
         <Image src={'/medal.svg'} width={20} height={20}/>
@@ -35,7 +35,7 @@ const Header = () => {
         </>
         : <>
         <Image src={'/page-edit.svg'} width={20} height={20}/>
-        <p>Edit Task/Objective</p>
+        <p>Edit Activity/Objective</p>
         </>}
       </button>
     </header>

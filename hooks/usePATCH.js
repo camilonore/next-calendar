@@ -1,10 +1,10 @@
 import { patchData } from '../utils/reqMethods'
 
-const usePATCH = async ({ event, fields, isTask, editObjectId }) => {
+const usePATCH = async ({ event, fields, isActivity, editObjectId }) => {
   const body = {
     id: editObjectId
   }
-  const url = isTask ? 'api/activities' : 'api/objectives'
+  const url = isActivity ? 'api/activities' : 'api/objectives'
   fields.forEach(field => {
     body[field.name] = event.target[field.name].value
   })

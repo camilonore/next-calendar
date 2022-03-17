@@ -4,14 +4,14 @@ import styles from './Form.module.css'
 import { deleteData } from '../../utils/reqMethods'
 
 const Form = ({ onSubmit, fields = {} }) => {
-  const { editObjectId, setIsModalOpen, setObjectives, setActivities, isTask } = useContext(CalendarContext)
+  const { editObjectId, setIsModalOpen, setObjectives, setActivities, isActivity } = useContext(CalendarContext)
   function handleDelete (e) {
-    const url = isTask ? 'api/activities' : 'api/objectives'
+    const url = isActivity ? 'api/activities' : 'api/objectives'
     e.preventDefault()
     deleteData(editObjectId, url)
       .then(response => {
         if (response.success) {
-          if (isTask) {
+          if (isActivity) {
             setActivities(response.data)
           } else {
             setObjectives(response.data)

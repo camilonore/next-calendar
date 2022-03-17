@@ -2,7 +2,7 @@ import styles from './Modal.module.css'
 import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 import { Form } from '../Form/Form'
-import { taskFields, objectiveFields, editTaskFields, editObjectiveFields } from '../../utils/formFields'
+import { activityFields, editActivityFields, objectiveFields, editObjectiveFields } from '../../utils/formFields'
 import { usePOST } from '../../hooks/usePOST'
 import { usePATCH } from '../../hooks/usePATCH'
 
@@ -12,16 +12,16 @@ const Modal = () => {
   const {
     setIsModalOpen,
     isModalOpen,
-    isTask,
+    isActivity,
     editMode,
     setObjectives,
     setActivities,
     editObjectId
   } = useContext(CalendarContext)
 
-  function handleTaskSubmit (event) {
+  function handleActivitySubmit (event) {
     event.preventDefault()
-    usePOST({ event, fields: taskFields, isTask })
+    usePOST({ event, fields: activityFields, isActivity })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)
@@ -31,9 +31,9 @@ const Modal = () => {
         }
       })
   }
-  function handleAcitvityUpdate (event) {
+  function handleActivityUpdate (event) {
     event.preventDefault()
-    usePATCH({ event, fields: editTaskFields, isTask, editObjectId })
+    usePATCH({ event, fields: editActivityFields, isActivity, editObjectId })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)
@@ -41,19 +41,9 @@ const Modal = () => {
         }
       })
   }
-  function handleObjectiveUpdate (event) {
-    event.preventDefault()
-    usePATCH({ event, fields: editObjectiveFields, isTask, editObjectId })
-      .then(response => {
-        if (response.success) {
-          setIsModalOpen(false)
-          setObjectives(response.data)
-        }
-      })
-  }
   function handleObjectiveSubmit (event) {
     event.preventDefault()
-    usePOST({ event, fields: objectiveFields, isTask })
+    usePOST({ event, fields: objectiveFields, isActivity })
       .then(response => {
         if (response.success) {
           setIsModalOpen(false)
@@ -63,13 +53,23 @@ const Modal = () => {
         }
       })
   }
+  function handleObjectiveUpdate (event) {
+    event.preventDefault()
+    usePATCH({ event, fields: editObjectiveFields, isActivity, editObjectId })
+      .then(response => {
+        if (response.success) {
+          setIsModalOpen(false)
+          setObjectives(response.data)
+        }
+      })
+  }
 
   return (
     <section className={styles.modal} style={{ display: isModalOpen ? 'flex' : 'none' }}>
-      {isTask && editMode && <Form onSubmit={handleAcitvityUpdate} fields={editTaskFields}/>}
-      {!isTask && editMode && <Form onSubmit={handleObjectiveUpdate} fields={editObjectiveFields}/>}
-      {isTask && !editMode && <Form onSubmit={handleTaskSubmit} fields={taskFields}/>}
-      {!isTask && !editMode && <Form onSubmit={handleObjectiveSubmit} fields={objectiveFields}/>}
+      {isActivity && editMode && <Form onSubmit={handleActivityUpdate} fields={editActivityFields}/>}
+      {!isActivity && editMode && <Form onSubmit={handleObjectiveUpdate} fields={editObjectiveFields}/>}
+      {isActivity && !editMode && <Form onSubmit={handleActivitySubmit} fields={activityFields}/>}
+      {!isActivity && !editMode && <Form onSubmit={handleObjectiveSubmit} fields={objectiveFields}/>}
     </section>
   )
 }

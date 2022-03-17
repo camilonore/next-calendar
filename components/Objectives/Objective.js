@@ -4,9 +4,9 @@ import { useContext } from 'react'
 import { CalendarContext } from '../../Context/CalendarContext'
 
 const Objective = ({ objective, objectId }) => {
-  const { editMode, setIsTask, setIsModalOpen, setEditObjectId } = useContext(CalendarContext)
+  const { editMode, setIsActivity, setIsModalOpen, setEditObjectId } = useContext(CalendarContext)
   const handleEdit = () => {
-    setIsTask(false)
+    setIsActivity(false)
     setIsModalOpen(prev => !prev)
     setEditObjectId(objectId)
   }

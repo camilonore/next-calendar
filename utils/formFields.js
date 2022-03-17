@@ -1,4 +1,4 @@
-const taskFields = [
+const activityFields = [
   {
     name: 'day',
     placeholder: 'Monday',
@@ -27,7 +27,7 @@ const objectiveFields = [
     required: true
   }
 ]
-const editTaskFields = [
+const editActivityFields = [
   {
     name: 'day',
     placeholder: 'Monday'
@@ -54,4 +54,4 @@ const editObjectiveFields = [
   }
 ]
 
-export { taskFields, objectiveFields, editTaskFields, editObjectiveFields }
+export { activityFields, objectiveFields, editActivityFields, editObjectiveFields }

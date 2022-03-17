@@ -8,4 +8,14 @@ function postData (url, body) {
   }).then((res) => res.json())
     .then((data) => data)
 }
-export { postData }
+function patchData (url, body) {
+  return fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  }).then((res) => res.json())
+    .then((data) => data)
+}
+export { postData, patchData }

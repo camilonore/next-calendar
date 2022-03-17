@@ -33,6 +33,23 @@ export default async function handler (req, res) {
         res.status(400).json({ success: false })
       }
       break
+    case 'PATCH':
+      try {
+        const { id, day, type, hour, description } = req.body
+        const foundActivity = await Activity.findById(id)
+
+        if (day) foundActivity.day = day
+        if (type) foundActivity.type = type
+        if (hour) foundActivity.hour = hour
+        if (description) foundActivity.description = description
+        await foundActivity.save()
+
+        const activities = await Activity.find({})
+        res.status(201).json({ success: true, data: activities })
+      } catch (error) {
+        res.status(400).json({ success: false })
+      }
+      break
     default:
       res.status(400).json({ success: false })
       break

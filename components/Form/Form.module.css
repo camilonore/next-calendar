@@ -21,7 +21,7 @@
 .input:focus{
   outline: 1px solid rgb(22 78 99);
 }
-.form > button{
+.submitButton{
   margin-top: 20px;
   cursor: pointer;
   color: #fff;
@@ -33,7 +33,7 @@
   background-color: rgb(59 130 246);
   border: none;
 }
-.form > button:hover{
+.submitButton:hover{
   background-color: rgb(37 99 235);
 }
 .form > div{

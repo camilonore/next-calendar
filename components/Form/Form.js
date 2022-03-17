@@ -37,11 +37,13 @@ const Form = ({ onSubmit, fields = {} }) => {
               ? <input list='days' className={styles.input} id={field.name} type="text" name={field.name} placeholder={field.placeholder} required={field.required}/>
               : <input className={styles.input} id={field.name} type="text" name={field.name} placeholder={field.placeholder} required={field.required}/>
           }
-          {field.deleteButton === true && <button className={styles.deleteButton} onClick={handleDelete}>Delete</button>}
         </div>
       })}
-      <button type='submit'>Submit</button>
-    </form>
+      <button type='submit' className={styles.submitButton}>Submit</button>
+      {fields.map(field => {
+        return field.deleteButton && <button className={styles.deleteButton} onClick={handleDelete}>Delete</button>
+      })}
+      </form>
   )
 }
 

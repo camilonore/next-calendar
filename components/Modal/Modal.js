@@ -4,6 +4,9 @@ import { CalendarContext } from '../../Context/CalendarContext'
 import { Form } from '../Form/Form'
 import { taskFields, objectiveFields, editTaskFields, editObjectiveFields } from '../../utils/formFields'
 import { usePOST } from '../../hooks/usePOST'
+import { usePATCH } from '../../hooks/usePATCH'
+
+// TODO: refactor
 
 const Modal = () => {
   const {
@@ -12,7 +15,8 @@ const Modal = () => {
     isTask,
     editMode,
     setObjectives,
-    setActivities
+    setActivities,
+    editObjectId
   } = useContext(CalendarContext)
 
   function handleTaskSubmit (event) {
@@ -24,6 +28,26 @@ const Modal = () => {
           setActivities(prev => {
             return [...prev, response.data]
           })
+        }
+      })
+  }
+  function handleAcitvityUpdate (event) {
+    event.preventDefault()
+    usePATCH({ event, fields: taskFields, isTask, editObjectId })
+      .then(response => {
+        if (response.success) {
+          setIsModalOpen(false)
+          setActivities(response.data)
+        }
+      })
+  }
+  function handleObjectiveUpdate (event) {
+    event.preventDefault()
+    usePATCH({ event, fields: objectiveFields, isTask, editObjectId })
+      .then(response => {
+        if (response.success) {
+          setIsModalOpen(false)
+          setObjectives(response.data)
         }
       })
   }
@@ -42,8 +66,8 @@ const Modal = () => {
 
   return (
     <section className={styles.modal} style={{ display: isModalOpen ? 'flex' : 'none' }}>
-      {isTask && editMode && <Form onSubmit={handleTaskSubmit} fields={editTaskFields}/>}
-      {!isTask && editMode && <Form onSubmit={handleObjectiveSubmit} fields={editObjectiveFields}/>}
+      {isTask && editMode && <Form onSubmit={handleAcitvityUpdate} fields={editTaskFields}/>}
+      {!isTask && editMode && <Form onSubmit={handleObjectiveUpdate} fields={editObjectiveFields}/>}
       {isTask && !editMode && <Form onSubmit={handleTaskSubmit} fields={taskFields}/>}
       {!isTask && !editMode && <Form onSubmit={handleObjectiveSubmit} fields={objectiveFields}/>}
     </section>

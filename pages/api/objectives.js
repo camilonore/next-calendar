@@ -32,6 +32,21 @@ export default async function handler (req, res) {
         res.status(400).json({ success: false })
       }
       break
+    case 'PATCH':
+      try {
+        console.log(req.body)
+        const { id } = req.body
+        const { objective } = req.body
+        const foundObjective = await Objective.findById(id)
+
+        foundObjective.objective = objective
+        await foundObjective.save()
+        const activities = await Objective.find({})
+        res.status(201).json({ success: true, data: activities })
+      } catch (error) {
+        res.status(400).json({ success: false })
+      }
+      break
     default:
       res.status(400).json({ success: false })
       break
